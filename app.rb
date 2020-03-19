@@ -2,6 +2,7 @@ require 'sinatra'
 require "sinatra/reloader"
 require "pry"
 require_relative "person"
+require_relative "model"
 
 before do
     request.body.rewind
