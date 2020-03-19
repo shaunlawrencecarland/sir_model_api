@@ -2,16 +2,16 @@ require "spec_helper"
 
 describe Model do
     describe "#results" do
-    let(:model) do
-        described_class.new(
-            eons: eons,
-            infected: 1,
-            susceptible: 1,
-            resistant: 1,
-            rate_si: 0.01,
-            rate_ir: 0.05
-        )
-    end
+        let(:model) do
+            described_class.new(
+                eons: eons,
+                infected: 1,
+                susceptible: 1,
+                resistant: 1,
+                rate_si: 0.01,
+                rate_ir: 0.05
+            )
+        end
 
         context "when the eons is zero" do
             let(:eons) { 0 }

@@ -11,4 +11,13 @@ class Point
     def to_s
         "eon: #{eon} susceptible: #{susceptible} infected: #{infected} resistant: #{resistant}"
     end
+
+    def to_json
+        {
+            eon: eon,
+            susceptible: susceptible,
+            infected: infected,
+            resistant: resistant
+         }
+    end
 end

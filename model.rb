@@ -27,7 +27,7 @@ class Model
       point = Point.new(susceptible: susceptible, infected: infected, resistant: resistant, eon: 0)
       points = [point]
   
-      (1..eons).each do |eon|
+      eons.times do |eon|
         last_point = points.last
   
         s_to_i = (rate_si * last_point.susceptible * last_point.infected) / population_size
@@ -42,6 +42,8 @@ class Model
   
         points << point
       end
+
+      points.map { |point| point.to_json }
     end
     
     def population_size
