@@ -13,6 +13,35 @@ describe Model do
             )
         end
 
+        context "when a custom population is inserted into a model" do
+            let(:model_1) do
+                described_class.new(
+                    eons: 1,
+                    infected: 1,
+                    susceptible: 1,
+                    resistant: 1,
+                    rate_si: 0.01,
+                    rate_ir: 0.05,
+                    population: 10000    
+                )
+            end
+
+            let(:model_2) do
+                described_class.new(
+                    eons: 1,
+                    infected: 1,
+                    susceptible: 1,
+                    resistant: 1,
+                    rate_si: 0.01,
+                    rate_ir: 0.05,
+                )
+            end
+    
+            it "gives a different infected result then a model without a population" do
+                expect(model_1.results[1][:infected]).not_to eq(model_2.results[1][:infected])
+            end
+        end
+
         context "when the eons is zero" do
             let(:eons) { 0 }
 

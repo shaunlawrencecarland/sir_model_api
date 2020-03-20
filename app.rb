@@ -10,7 +10,8 @@ get '/v1/sir_model' do
         infected: params["infected"].to_i,
         resistant: params["resistant"].to_i,
         rate_si: params["rate_si"].to_f,
-        rate_ir: params["rate_ir"].to_f
+        rate_ir: params["rate_ir"].to_f,
+        population: params["population"].nil? ? nil : params["population"].to_i
     )
 
     content_type :json

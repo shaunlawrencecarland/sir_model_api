@@ -3,17 +3,23 @@ require_relative "point"
 class Model
     attr_reader :eons, :susceptible, :infected, :resistant, :rate_si, :rate_ir
     
-    def initialize(eons:, susceptible:, infected:, resistant:, rate_si:, rate_ir:)
+    def initialize(eons:, susceptible:, infected:, resistant:, rate_si:, rate_ir:, population: nil)
+      binding.pry
       @eons = eons
       @susceptible = susceptible
       @infected = infected
       @resistant = resistant
       @rate_si = rate_si
       @rate_ir = rate_ir
+      @population = population
     end
 
     def results
         @results ||= build_results
+    end
+
+    def population
+      @population || susceptible + infected + resistant
     end
   
     private
@@ -30,7 +36,7 @@ class Model
       (1..eons).each do |eon|
         last_point = points.last
   
-        s_to_i = (rate_si * last_point.susceptible * last_point.infected) / population_size
+        s_to_i = (rate_si * last_point.susceptible * last_point.infected) / population
         i_to_r = last_point.infected * rate_ir
         
         point = Point.new(
