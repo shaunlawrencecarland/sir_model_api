@@ -27,11 +27,11 @@ class Model
       point = Point.new(susceptible: susceptible, infected: infected, resistant: resistant, eon: 0)
       points = [point]
   
-      eons.times do |eon|
+      (1..eons).each do |eon|
         last_point = points.last
   
         s_to_i = (rate_si * last_point.susceptible * last_point.infected) / population_size
-        i_to_r = last_point.infected - rate_ir
+        i_to_r = last_point.infected * rate_ir
         
         point = Point.new(
           susceptible: last_point.susceptible - s_to_i,

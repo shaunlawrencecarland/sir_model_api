@@ -28,5 +28,47 @@ describe Model do
                 expect { model.results }.to raise_error
             end
         end
+
+        context "test case 1" do
+            let(:model) do
+                described_class.new(
+                    eons: 5,
+                    infected: 50,
+                    susceptible: 950,
+                    resistant: 0,
+                    rate_si: 0.05,
+                    rate_ir: 0.01
+                )
+            end
+
+            let(:results) { model.results }
+
+            it "sets the 0th eon correctly" do
+                eon = results[0]
+                expect(eon[:eon]).to eq(0)
+
+                expect(eon[:susceptible]).to eq(950)
+                expect(eon[:infected]).to eq(50)
+                expect(eon[:resistant]).to eq(0)
+            end
+
+            it "sets the 1st eon correctly" do
+                eon = results[1]
+                expect(eon[:eon]).to eq(1)
+
+                expect(eon[:susceptible].round(6)).to eq(947.625)
+                expect(eon[:infected].round(6)).to eq(51.875)
+                expect(eon[:resistant].round(6)).to eq(0.5) 
+            end
+
+            it "sets the 2nd eon correctly" do
+                eon = results[2]
+                expect(eon[:eon]).to eq(2)
+
+                expect(eon[:susceptible].round(6)).to eq(945.167098)
+                expect(eon[:infected].round(6)).to eq(53.814152)
+                expect(eon[:resistant].round(6)).to eq(1.018750) 
+            end
+        end
     end
 end
